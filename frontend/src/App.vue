@@ -27,7 +27,6 @@
       v-model="dialog.show"
       :title="dialog.title"
       :fullscreen="dialog.fullscreen"
-      :width="dialog.width"
       :persistent="dialog.persistent"
       :persistent-no-animation="dialog.persistentNoAnimation"
       title-class="primary-light1--bg white">
@@ -71,7 +70,6 @@ export default {
         fullscreen: false,
         persistent: false,
         persistentNoAnimation: false,
-        width: 300
       }
     }
   },
