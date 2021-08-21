@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <!--nprogress: https://www.digitalocean.com/community/tutorials/add-loading-indicators-to-your-vuejs-application-->
+    <link href="https://unpkg.com/nprogress@0.2.0/nprogress.css" rel="stylesheet" />
+    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <style>
+      /* https://stackoverflow.com/questions/48172814/how-to-compute-styles-on-body-or-html-using-vue-js */      
+      body,
+      html {
+        height: 100%;
+      }
+
+      body {
+        background-size:     cover;                      /* <------ */
+        background-repeat:   no-repeat;
+        background-position: center center;              /* optional, center the image */
+        margin: 0;
+      }
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app" class="container"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
