@@ -1,14 +1,18 @@
+const env = process.env.NODE_ENV || 'development';
+const path = __dirname + '/app/views/';
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const env = process.env.NODE_ENV || 'development';
-const app = express();
-
 var corsOptions = {
   origin: "http://localhost:8081"
 };
 
+const app = express();
+app.use(express.static(path));
 app.use(cors(corsOptions));
+app.use(bodyParser.json());                         // parse requests of content-type - application/json
+app.use(bodyParser.urlencoded({ extended: true })); // parse requests of content-type - application/x-www-form-urlencoded
 
 // Sync db
 const db = require("./app/models");
@@ -21,15 +25,10 @@ if (env == 'development') {
     db.sequelize.sync();
 }
 
-// parse requests of content-type - application/json
-app.use(bodyParser.json());
-
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
-
 // main index route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  // res.json({ message: "Welcome to my application" });
+  res.sendFile(path + "index.html");
 });
 
 // include routes

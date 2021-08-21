@@ -25,6 +25,7 @@
 
     <w-dialog
       v-model="dialog.show"
+      :title="dialog.title"
       :fullscreen="dialog.fullscreen"
       :width="dialog.width"
       :persistent="dialog.persistent"
@@ -33,7 +34,7 @@
       {{dialogMsg}}
       <template #actions>
         <div class="spacer" />
-        <w-button @click="dialog.show = false">Ok</w-button>
+        <w-button @click="dialog.show = false">Close</w-button>
       </template>
     </w-dialog>
 
@@ -65,6 +66,7 @@ export default {
         }
       },
       dialog: {
+        title: "Message",
         show: false,
         fullscreen: false,
         persistent: false,
@@ -78,6 +80,7 @@ export default {
     const urlParams = new URLSearchParams(window.location.search);
     this.dialogMsg = urlParams.get('msg') || "";
     if (this.dialogMsg) {
+      this.dialog.title = "Error";
       this.dialog.show = true;
     }
     axios
@@ -99,12 +102,14 @@ export default {
         url: this.input_text
       })
       .then(response => {
-        this.dialogMsg = `your shortened URL is: ${window.location.hostname}/${response.data.shortUrl}`;
+        this.dialog.title = "Your shortened URL is";
+        this.dialogMsg = `${window.location.hostname}/${response.data.shortUrl}`;
         this.dialog.show = true;
       })
       .catch(error => {
         console.log(error)
-        this.dialogMsg = `Error: ${error.message}`;
+        this.dialog.title = "Error";
+        this.dialogMsg = `${error.message}`;
         this.dialog.show = true;
       })
       .finally(() => this[`button2loading`] = false)
