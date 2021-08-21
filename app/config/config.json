@@ -21,6 +21,9 @@
     "database": "urlshortener_dev",
     "host": "localhost",
     "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": true
+    },
     "operatorsAliases": false,
     "use_env_variable": "DATABASE_URL"
   }
